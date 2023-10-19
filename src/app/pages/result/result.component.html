@@ -1,0 +1,13 @@
+<div class="result-container">
+  <div class="result-block">
+    <div class="result-title">
+      <h2>Result!</h2>
+    </div>
+    <ng-container *ngIf="result; else failed">
+      <h1 class="text-success">Hurray!!! Your answers are correct!</h1>
+    </ng-container>
+    <ng-template #failed>
+      <h2 class="text-danger">Sorry! Failed the test!</h2>
+    </ng-template>
+  </div>
+</div>

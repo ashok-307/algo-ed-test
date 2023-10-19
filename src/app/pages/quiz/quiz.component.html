@@ -1,0 +1,27 @@
+<div class="quiz-container">
+  <ng-container *ngIf="quizForm">
+    <form [formGroup]="quizForm" (ngSubmit)="onQuizSubmit()">
+      <div class="quiz-block mb-2" [quizBlock]="quizData.length" #quizBlockElement>
+        <div class="quiz-questions col-12" [quizQuestions]="quizBlockElement.offsetWidth*quizData.length" #questionsElement [style]="{left: slidePosition + 'px'}">
+          <ng-container formArrayName="quiz">
+            <div class="quiz-question" [quizQuestion]="quizBlockElement.offsetWidth" *ngFor="let selection of quizElements; let ind = index;">
+              <p>{{quizData[ind].question}}</p>
+              <div class="options">
+                <ng-container *ngFor="let singleRadio of quizData[ind].options; let i = index;">
+                  <div class="element">
+                    <input type="radio" [id]="ind + '' + i" formControlName="{{ind}}" value="{{singleRadio}}" > <label class="ms-1" for="{{ind + '' + i}}">{{singleRadio}}</label>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <div class="quiz-footer">
+        <button type="button" (click)="onPrev()" class="btn btn-primary btn-prev me-1">Prev</button>
+        <button type="button" (click)="onNext()" class="btn btn-secondary btn-next me-1">Next</button>
+        <button type="submit" class="btn btn-success btn-submit">Submit</button>
+      </div>
+    </form>
+  </ng-container>
+</div>
